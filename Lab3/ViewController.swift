@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     var isHidden = false
     
+    var lastCard:Card? = nil
+    
     @IBOutlet var cardViews: [CardView]!
     
     override func viewDidLoad() {
@@ -33,7 +35,39 @@ class ViewController: UIViewController {
 
 extension ViewController: CardViewDelegate {
     
+    
     func didClicked(sender: CardView) {
+        guard let lastCard = lastCard else {
+            self.lastCard = sender.card
+            return
+        }
         
+        guard lastCard != sender.card else {
+            cardViews[sender.card.id].flipBack()
+            self.lastCard = nil
+            return
+        }
+        
+        if !game.checkForMatch(lastCard, sender.card) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: { [weak self] in
+                self?.cardViews[lastCard.id].flipBack()
+                self?.cardViews[sender.card.id].flipBack()
+            })
+        } else {
+            if game.isGameWon() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: { [weak self] in
+                     let alert = UIAlertController(title: "Game Info", message: "Game Win!", preferredStyle: .alert)
+                                  alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                                  NSLog("The \"OK\" alert occured.")
+                                  }))
+                                  self?.present(alert, animated: true, completion: nil)
+                })
+              
+            }
+        }
+        
+        self.lastCard = nil
     }
+    
+    
 }

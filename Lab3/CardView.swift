@@ -27,24 +27,30 @@ class CardView: NibLoadingView {
     weak var delegate: CardViewDelegate?
     
     @IBAction func buttonTapped(_ sender:UIButton){
-        //delegate?.didClicked(sender: self)
-        
-        if (!card.isFaceUp) {
-            topCard.flip(to: bottomCard, with: .transitionFlipFromLeft)
-            card.isFaceUp = true
-        } else {
-            bottomCard.flip(to: topCard, with: .transitionFlipFromLeft)
-            card.isFaceUp = false
+        if (card.isMatched) {
+            return
         }
+        if (!card.isFaceUp) {
+            flipTop()
+        } else {
+            flipBack()
+        }
+        delegate?.didClicked(sender: self)
+    }
+    
+    func flipTop () {
+        topCard.flip(to: bottomCard, with: .transitionFlipFromLeft)
+        card.isFaceUp = true
+    }
+    
+    func flipBack () {
+        bottomCard.flip(to: topCard, with: .transitionFlipFromLeft)
+        card.isFaceUp = false
     }
     
     func configure (card:Card) {
         self.card = card
-        //let img = UIImageView(image: UIImage(named: card.img))
         imageView.image = UIImage(named: card.img)
-        //img.centerMode = .scaleToFill
-        /*img.center = CGPoint(x: bottomCard.frame.size.width/2, y: bottomCard.frame.size.height / 2)*/
-        //bottomCard.addSubview(img)
     }
     
 

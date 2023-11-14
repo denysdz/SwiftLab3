@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Card {
+struct Card: Equatable {
     var id: Int
     var img:String
     var isFaceUp:Bool

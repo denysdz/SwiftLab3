@@ -24,22 +24,42 @@ class Game {
     
     init (count maxCount:Int) {
         cardsCount = maxCount
-        for _ in 0..<maxCount {
-            for _ in 0..<2 {
-                let randomInt = Int.random(in: 0..<cardsSrs.count)
-                cards.append(Card(id: 0, img: cardsSrs[randomInt], isFaceUp: false, isMatched: false))
+        for index in 0..<maxCount {
+            let randomInt = Int.random(in: 0..<cardsSrs.count)
+            for column in 0..<2 {
+                let currentIndex = index*2+column
+                cards.append(Card(id: currentIndex, img: cardsSrs[randomInt], isFaceUp: false, isMatched: false))
             }
         }
     }
     
-    func flipCard(at index: Int) {}
-    
-    func checkForMatch() {}
-    
-    func isGameWon() -> Bool {
-        return false
+    func flipCard(at index: Int) {
+        
     }
     
-    func restartGame() {}
+    func checkForMatch(_ firstCard:Card, _ lastCard:Card) -> Bool {
+        if (firstCard.img == lastCard.img) {
+            cards[firstCard.id].isMatched = true
+            cards[lastCard.id].isMatched = true
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    
+    func isGameWon() -> Bool {
+        for card in cards {
+            if !card.isMatched {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func restartGame() {
+        
+    }
     
 }
