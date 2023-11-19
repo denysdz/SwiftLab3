@@ -18,6 +18,8 @@
 		840AFD5C2AE796C100129443 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AFD5B2AE796C100129443 /* CardView.swift */; };
 		840AFD602AE7977400129443 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840AFD5F2AE7977400129443 /* CardView.xib */; };
 		840AFD642AE79ED800129443 /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AFD632AE79ED800129443 /* NibLoadingView.swift */; };
+		840AFD692B035FE600129443 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840AFD672B035FE600129443 /* CardCollectionViewCell.swift */; };
+		840AFD6A2B035FE600129443 /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840AFD682B035FE600129443 /* CardCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		840AFD5B2AE796C100129443 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		840AFD5F2AE7977400129443 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		840AFD632AE79ED800129443 /* NibLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
+		840AFD672B035FE600129443 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		840AFD682B035FE600129443 /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				840AFD5B2AE796C100129443 /* CardView.swift */,
 				840AFD5F2AE7977400129443 /* CardView.xib */,
 				840AFD632AE79ED800129443 /* NibLoadingView.swift */,
+				840AFD672B035FE600129443 /* CardCollectionViewCell.swift */,
+				840AFD682B035FE600129443 /* CardCollectionViewCell.xib */,
 			);
 			path = Lab3;
 			sourceTree = "<group>";
@@ -141,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				840AFD502AD521FC00129443 /* LaunchScreen.storyboard in Resources */,
+				840AFD6A2B035FE600129443 /* CardCollectionViewCell.xib in Resources */,
 				840AFD4D2AD521FC00129443 /* Assets.xcassets in Resources */,
 				840AFD602AE7977400129443 /* CardView.xib in Resources */,
 				840AFD4B2AD521FB00129443 /* Main.storyboard in Resources */,
@@ -154,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840AFD692B035FE600129443 /* CardCollectionViewCell.swift in Sources */,
 				840AFD482AD521FB00129443 /* ViewController.swift in Sources */,
 				840AFD5A2AD6943800129443 /* Game.swift in Sources */,
 				840AFD442AD521FB00129443 /* AppDelegate.swift in Sources */,

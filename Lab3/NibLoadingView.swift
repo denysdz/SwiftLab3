@@ -58,4 +58,5 @@ extension UIView: NibRepresentable {
     private func loadViewFromNib() -> UIView {
         Self.nib.instantiate(withOwner: self).first as! UIView
     }
+    
 }

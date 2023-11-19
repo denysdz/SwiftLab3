@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CardViewDelegate: AnyObject {
-    func didClicked(sender: CardView)
+    func didClicked(id: Int, sender: CardView)
 }
 
 class CardView: NibLoadingView {
@@ -35,7 +35,7 @@ class CardView: NibLoadingView {
         } else {
             flipBack()
         }
-        delegate?.didClicked(sender: self)
+        delegate?.didClicked(id: card.id, sender: self)
     }
     
     func flipTop () {
