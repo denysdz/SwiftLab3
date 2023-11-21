@@ -50,6 +50,8 @@ class CardView: NibLoadingView {
     
     func configure (card:Card) {
         self.card = card
+        topCard.isHidden = card.isFaceUp
+        bottomCard.isHidden = !card.isFaceUp
         imageView.image = UIImage(named: card.img)
     }
     

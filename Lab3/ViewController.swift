@@ -14,7 +14,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var isHidden = false
     
-    let count = 12
+    let initialCount = 14
     
      let itemsPerRow = 3
     
@@ -22,13 +22,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var labelCount: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let pairCount = count / 2
-        game = Game(count: pairCount)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CardCollectionViewCell")
+        reloadGame(initialCount)
+    }
+    
+    @IBAction func addPairAction (_ sender: UIButton) {
+        var cardCount = game.cardsCount
+        cardCount += 2
+        reloadGame(cardCount)
+    }
+    
+    @IBAction func minusAction (_ sender: UIButton) {
+        var cardCount = game.cardsCount
+        if (cardCount >= 4) {
+            cardCount -= 2
+            reloadGame(cardCount)
+        }
     }
     
     func loadIcons () {
@@ -40,8 +55,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         */
     }
     
+    func reloadGame (_ cardCount: Int) {
+        game = Game(count: cardCount)
+        collectionView.reloadData()
+        labelCount.text = "Pair count \(cardCount)"
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return count
+        return game.cardsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,8 +127,9 @@ extension ViewController: CardViewDelegate {
             if game.isGameWon() {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: { [weak self] in
                      let alert = UIAlertController(title: "Game Info", message: "Game Win!", preferredStyle: .alert)
-                                  alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                                  NSLog("The \"OK\" alert occured.")
+                                  alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { [weak self] _ in
+                                    guard let vc = self else { return }
+                                    vc.reloadGame(vc.game.cardsCount)
                                   }))
                                   self?.present(alert, animated: true, completion: nil)
                 })

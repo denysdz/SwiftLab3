@@ -23,8 +23,9 @@ class Game {
     var cards: [Card] = []
     
     init (count maxCount:Int) {
+        let pairCount = maxCount / 2
         cardsCount = maxCount
-        for index in 0..<maxCount {
+        for index in 0..<pairCount {
             let randomInt = Int.random(in: 0..<cardsSrs.count)
             for column in 0..<2 {
                 let currentIndex = index*2+column
